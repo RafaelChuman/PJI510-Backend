@@ -1,22 +1,22 @@
 version: '3.4'
 
 services:
-  pji410_pg:
+  pji510_pg:
     image: postgres
-    container_name: pji410_pg
+    container_name: pji510_pg
     restart: always
     ports:
       - 5432:5432
     environment:
       TZ: utc
       POSTGRES_USER: chuman
-      POSTGRES_PASSWORD: pji410_univesp!
+      POSTGRES_PASSWORD: pji510_univesp!
       POSTGRES_DB: postgres
     volumes:
       - pgdata:/data/postgres
-  # pji410_backend:
+  # pji510_backend:
   #   build: .
-  #   container_name: pji410_backend
+  #   container_name: pji510_backend
   #   volumes:
   #     - .:/usr/app
   #   environment:
@@ -25,9 +25,9 @@ services:
   #   ports:
   #     - 3333:3333
   #   links:
-  #     - pg_pji410
+  #     - pg_pji510
   #   depends_on:
-  #     - pg_pji410
+  #     - pg_pji510
 volumes:
   pgdata:
     driver: local

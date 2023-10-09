@@ -1,8 +1,8 @@
 docker -v
 
-docker build -t pji410
+docker build -t pji510
 
-docker run -p 3333:3333 pji410
+docker run -p 3333:3333 pji510
 
 docker ps
 
@@ -18,7 +18,7 @@ docker-compose stop
 
 docker-compose start
 
-docker logs pji410 -f
+docker logs pji510 -f
 
 docker ps -a
 

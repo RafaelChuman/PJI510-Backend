@@ -1,8 +1,8 @@
 {
-  "name": "pji410-backend",
+  "name": "pji510-backend",
   "private": true,
   "version": "1.0.0",
-  "description": "PJI410-Backend",
+  "description": "PJI510-Backend",
   "main": "src/index.ts",
   "author": "Rafael Chuman Santana",
   "license": "MIT",

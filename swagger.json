@@ -1,7 +1,7 @@
 {
     "openapi":"3.0.0.0",
-    "title":"PJI410 Swagger",
-    "description":"Documentação para o PJI410",
+    "title":"PJI510 Swagger",
+    "description":"Documentação para o PJI510",
     "version":"0.0.1",
     "contact":{
         "name":"Rafael Chuman Santana",

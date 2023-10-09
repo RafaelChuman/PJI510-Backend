@@ -8,26 +8,27 @@ import { ERs } from "./entity/ERs/ERs";
 import { OilMonitor } from "./entity/OilMonitor/oilMonitor";
 
 export const PostgresDS = new DataSource({
-  // type: "postgres",
-  // host: "127.0.0.1",
-  // port: 5432,
-  // username: "chuman",
-  // password: "pji410_univesp!",
-  // database: "postgres",
-  // name: "default",
   type: "postgres",
-  host: "ep-square-frog-051483.us-east-2.aws.neon.tech",
+  host: "127.0.0.1",
   port: 5432,
-  username: "RafaelChuman",
-  password: "e9YBvLoHjNx6",
-  database: "neondb",
+  username: "chuman",
+  password: "pji510_univesp!",
+  database: "postgres",
   name: "default",
-  ssl: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  },
+  // type: "postgres",
+  // host: "ep-square-frog-051483.us-east-2.aws.neon.tech",
+  // port: 5432,
+  // username: "RafaelChuman",
+  // password: "e9YBvLoHjNx6",
+  // database: "neondb",
+  // name: "default",
+  //ssl: true,
+  // extra: {
+  //   ssl: {
+  //     rejectUnauthorized: false,
+  //   },
+  // },
+  ssl: false,
   entities: [
     Users,
     Collaborators,
