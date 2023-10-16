@@ -1,13 +1,13 @@
-import { OilMonitor } from './oilMonitor';
+import { IoTMonitor } from './IoTMonitor';
 import { v4 as uuidv4 } from "uuid";
 
 describe("Unit Test for Oil Monitor Class", () => {
 
     it("Should create a oil monitor", async () => {
 
-        const test = new OilMonitor();
+        const test = new IoTMonitor();
 
-        test.oilLevel = 50;
+        test.humidity = 50;
 
         // expect(typeof test.id).toBe('string');
         // expect(typeof test.oilLevel).toBe('number');

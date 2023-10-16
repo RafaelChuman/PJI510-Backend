@@ -1,11 +1,9 @@
-import { Users } from "@src/entity/Users/Users";
-import { DataSource, createConnections, getConnectionManager } from "typeorm";
-import { Activities } from "@src/entity/Activities/activities";
-import { Collaborators } from "./entity/Collaborators/collaborators";
-import { Zones } from "./entity/Zones/zones";
-import { LubrificationSystemServices } from "./entity/LubricationSystemServices/lubrificationSystemServices";
-import { ERs } from "./entity/ERs/ERs";
-import { OilMonitor } from "./entity/OilMonitor/oilMonitor";
+import { DataSource } from "typeorm";
+import { User } from "./entity/User/User";
+import { RescueGroup } from "./entity/RescueGroup/RescueGroup";
+import { IoT } from "./entity/IoT/IoT";
+import { Group } from "./entity/Group/Group";
+import { IoTMonitor } from "./entity/IoTMonitor/IoTMonitor";
 
 export const PostgresDS = new DataSource({
   type: "postgres",
@@ -30,13 +28,11 @@ export const PostgresDS = new DataSource({
   // },
   ssl: false,
   entities: [
-    Users,
-    Collaborators,
-    Activities,
-    Zones,
-    ERs,
-    LubrificationSystemServices,
-    OilMonitor,
+    User,
+    Group,
+    RescueGroup,
+    IoT,
+    IoTMonitor
   ],
   migrations: ["./src/migration/*.m.ts"],
 });

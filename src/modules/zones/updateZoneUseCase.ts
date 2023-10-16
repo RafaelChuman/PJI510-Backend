@@ -1,7 +1,7 @@
 
 
-import { IUpdateZoneDTO } from "@src/entity/Zones/IZonesRepository";
-import { ZonesRepository} from '@src/entity/Zones/ZonesRepository'
+import { IUpdateZoneDTO } from "@src/entity/Group/IZonesRepository";
+import { ZonesRepository} from '@src/entity/Group/ZonesRepository'
 import { Response, Request, response } from "express";
 
 

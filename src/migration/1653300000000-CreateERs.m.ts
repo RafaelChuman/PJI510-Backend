@@ -7,10 +7,10 @@ import {
   TableOptions,
 } from "typeorm";
 
-export class CreateERs1653300000000 implements MigrationInterface {
+export class CreateIoT1653300000000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     const newERsTableOptions: TableOptions = {
-      name: "ERs",
+      name: "IoT",
       columns: [
         {
           name: "id",

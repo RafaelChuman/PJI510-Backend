@@ -1,5 +1,5 @@
-import { IDeleteOilMonitorDTO } from "@src/entity/OilMonitor/IOilMonitorRepository";
-import { OilMonitorRepository } from "@src/entity/OilMonitor/oiMonitorRepository";
+import { IDeleteOilMonitorDTO } from "@src/entity/IoTMonitor/IOilMonitorRepository";
+import { OilMonitorRepository } from "@src/entity/IoTMonitor/oiMonitorRepository";
 import { Request, Response } from "express";
 
 export class DeleteOilMonitor {

@@ -1,4 +1,4 @@
-import { ERsRepository } from "@src/entity/ERs/ERsRepository";
+import { ERsRepository } from "@src/entity/IoT/ERsRepository";
 import { Request, Response } from "express";
 
 export class ListERs {

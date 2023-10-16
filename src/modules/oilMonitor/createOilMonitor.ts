@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { ICreateOilMonitorDTO } from "@entity/OilMonitor/IOilMonitorRepository";
-import { OilMonitorRepository } from "@src/entity/OilMonitor/oiMonitorRepository";
+import { ICreateOilMonitorDTO } from "@src/entity/IoTMonitor/IOilMonitorRepository";
+import { OilMonitorRepository } from "@src/entity/IoTMonitor/oiMonitorRepository";
 
 export class CreateOilMonitor {
     async execute(request: Request, response: Response): Promise<Response> {

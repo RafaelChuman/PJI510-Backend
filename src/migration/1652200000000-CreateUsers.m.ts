@@ -25,11 +25,27 @@ export class CreateUsers1652200000000 implements MigrationInterface {
                         {
                             name: "password",
                             type: "varchar",
-                        },   
+                        },
+                        {
+                            name: "imgPath",
+                            type: "varchar",
+                        },
+                        {
+                            name: "email",
+                            type: "varchar",
+                        }, 
+                        {
+                            name: "celular",
+                            type: "varchar",
+                        }, 
+                        {
+                            name: "telegram",
+                            type: "varchar",
+                        }, 
                         {
                             name: "isAdmin",
                             type: "boolean",
-                        },                                                            
+                        },                                                                                     
                         {
                             name: "createdAt",
                             type: "timestamp",

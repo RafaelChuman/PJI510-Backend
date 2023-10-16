@@ -1,5 +1,5 @@
 
-import { ZonesRepository } from "@src/entity/Zones/ZonesRepository";
+import { ZonesRepository } from "@src/entity/Group/ZonesRepository";
 import { Response, Request } from "express";
 
 

@@ -1,4 +1,4 @@
-import { UsersRepository } from "@src/entity/Users/UsersRepository";
+import { UsersRepository } from "@src/entity/User/UsersRepository";
 import { AppError } from "@src/errors/AppError";
 import { Response, Request } from "express";
 

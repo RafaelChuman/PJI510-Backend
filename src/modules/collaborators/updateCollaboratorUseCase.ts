@@ -1,7 +1,7 @@
 
 
-import { CollaboratorsRepository } from "@src/entity/Collaborators/collaboratorsRepository";
-import { IUpdateCollaboratorDTO } from "@src/entity/Collaborators/ICollaboratorsRepository";
+import { CollaboratorsRepository } from "@src/entity/RescueGroup/collaboratorsRepository";
+import { IUpdateCollaboratorDTO } from "@src/entity/RescueGroup/ICollaboratorsRepository";
 import { Response, Request, response } from "express";
 
 

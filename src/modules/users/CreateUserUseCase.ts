@@ -1,8 +1,8 @@
 import { hash } from "bcrypt";
 import { AppError } from "@errors/AppError";
 import { Response, Request } from "express";
-import { ICreateUserDTO } from "@src/entity/Users/IUsersRepository";
-import { UsersRepository } from "@src/entity/Users/UsersRepository";
+import { ICreateUserDTO } from "@src/entity/User/IUsersRepository";
+import { UsersRepository } from "@src/entity/User/UsersRepository";
 
 class CreateUserUseCase {
   async execute(request: Request, response: Response): Promise<Response> {

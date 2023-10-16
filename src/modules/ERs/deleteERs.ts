@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import { IDeleteERDTO } from "@entity/ERs/IERsRepository";
-import { ERsRepository } from "@src/entity/ERs/ERsRepository";
+import { IDeleteERDTO } from "@src/entity/IoT/IERsRepository";
+import { ERsRepository } from "@src/entity/IoT/ERsRepository";
 import { idText } from "typescript";
 
 export class DeleteER {

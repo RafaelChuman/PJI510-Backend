@@ -1,21 +1,27 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryColumn } from "typeorm";
-import { ERs } from "../ERs/ERs";
 import { v4 as uuidv4 } from "uuid";
+import { IoT } from "../IoT/IoT";
 
 
-@Entity("OilMonitor")
-export class OilMonitor {
+@Entity("IoTMonitor")
+export class IoTMonitor {
     @PrimaryColumn()
     id: string;
 
     @Column()
-    oilLevel: number;
+    temperature: number;
+
+    @Column()
+    humidity: number;
+
+    @Column()
+    noBreak: boolean;
 
     @CreateDateColumn()
     createdAt: Date;
 
-    @ManyToOne(() => ERs, (er) => er.oilMonitor)
-    er: ERs;
+    @ManyToOne(() => IoT, (ioT) => ioT.IoTMonitor)
+    IoT: IoT;
 
     constructor() {
         if (this.id === undefined) {

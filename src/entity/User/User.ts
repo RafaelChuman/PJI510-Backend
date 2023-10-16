@@ -1,8 +1,10 @@
 import { v4 as uuidV4 } from "uuid";
 import { Entity, PrimaryGeneratedColumn, CreateDateColumn, Column, PrimaryColumn, ManyToOne, OneToMany} from "typeorm";
+import { Group } from "../Group/Group";
+import { RescueGroup } from "../RescueGroup/RescueGroup";
 
-@Entity("Users")
-export class Users {
+@Entity("User")
+export class User {
 
     @PrimaryColumn()
     id: string
@@ -17,10 +19,29 @@ export class Users {
     password: string
 
     @Column()
+    imgPath: string
+
+    @Column()
+    email: string
+
+    @Column()
+    celular: number
+
+    @Column()
+    telegram: number
+
+    @Column()
     isAdmin: boolean
 
     @CreateDateColumn()
     createdAt: Date
+
+    @OneToMany(()=> Group, (group) => group.User)
+    Group: Group[]
+
+    @OneToMany(()=> RescueGroup, (rescueGroup) => rescueGroup.User)
+    RescueGroup: RescueGroup[]
+
 
 
     constructor(){

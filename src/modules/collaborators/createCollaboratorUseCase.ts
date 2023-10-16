@@ -1,8 +1,8 @@
 import { hash } from "bcrypt";
 import { AppError } from "@errors/AppError";
 import { Response, Request } from "express";
-import { ICreateCollaboratorDTO } from "@src/entity/Collaborators/ICollaboratorsRepository";
-import { CollaboratorsRepository } from "@src/entity/Collaborators/collaboratorsRepository";
+import { ICreateCollaboratorDTO } from "@src/entity/RescueGroup/ICollaboratorsRepository";
+import { CollaboratorsRepository } from "@src/entity/RescueGroup/collaboratorsRepository";
 
 class CreateCollaboratorUseCase {
   async execute(request: Request, response: Response): Promise<Response> {

@@ -1,8 +1,8 @@
 import { hash } from "bcrypt";
 import { AppError } from "@errors/AppError";
 import { Response, Request } from "express";
-import { IDeleteCollaboratorDTO } from "@src/entity/Collaborators/ICollaboratorsRepository";
-import { CollaboratorsRepository } from "@src/entity/Collaborators/collaboratorsRepository";
+import { IDeleteCollaboratorDTO } from "@src/entity/RescueGroup/ICollaboratorsRepository";
+import { CollaboratorsRepository } from "@src/entity/RescueGroup/collaboratorsRepository";
 
 class DeleteCollaboratorUseCase {
   async execute(request: Request, response: Response): Promise<Response> {
