@@ -1,6 +1,4 @@
-import { ensureAuthenticated } from "@src/midlewares/ensureAuthenticated";
-import { ensureIsAdmin } from "@src/midlewares/ensureIsAdmin";
-import { createUserUseCase, listUserUseCase } from "@src/modules/users";
+import { createUserUseCase, listUserUseCase } from "@src/modules/User";
 import { response, request, Router } from "express";
 
 const usersRoutes = Router();

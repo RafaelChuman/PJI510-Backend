@@ -1,21 +1,21 @@
 import { hash } from "bcrypt";
 import { AppError } from "@errors/AppError";
 import { Response, Request } from "express";
-import { IDeleteCollaboratorDTO } from "@src/entity/RescueGroup/ICollaboratorsRepository";
-import { CollaboratorsRepository } from "@src/entity/RescueGroup/collaboratorsRepository";
+import { RepositoryGroup } from "@src/entity/Group/RepositoryGroup";
+import { DeleteGroup } from "@src/entity/Group/InterfaceGroup";
 
-class DeleteCollaboratorUseCase {
+class DeleteGroupUseCase {
   async execute(request: Request, response: Response): Promise<Response> {
     const idParam: string[] = request.body.ids;
 
     if (idParam.length > 0) {
-      const data: IDeleteCollaboratorDTO = {
+      const data: DeleteGroup = {
         ids: idParam,
       };
       
-      const collaboratorsRepository = new CollaboratorsRepository();
+      const groupRepository = new RepositoryGroup();
 
-      const resp = await collaboratorsRepository.deleteById(data);
+      const resp = await groupRepository.delete(data);
 
       return response.status(200).json(resp);
     }
@@ -24,4 +24,4 @@ class DeleteCollaboratorUseCase {
   }
 }
 
-export { DeleteCollaboratorUseCase };
+export { DeleteGroupUseCase };

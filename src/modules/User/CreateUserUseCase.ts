@@ -1,18 +1,24 @@
 import { hash } from "bcrypt";
 import { AppError } from "@errors/AppError";
 import { Response, Request } from "express";
-import { ICreateUserDTO } from "@src/entity/User/IUsersRepository";
-import { UsersRepository } from "@src/entity/User/UsersRepository";
+import { RepositoryUser } from "@src/entity/User/RepositoryUser";
+import { CreateUser } from "@src/entity/User/InterfaceUser";
 
 class CreateUserUseCase {
   async execute(request: Request, response: Response): Promise<Response> {
-    const data: ICreateUserDTO = {
+    const data: CreateUser = {
       name: request.body.name,
       password: request.body.password,
       userName: request.body.userName,
+      
+      imgPath: request.body.imgPath,
+      celular: request.body.celular,
+      telegram: request.body.telegram,
+      email: request.body.email,
+
       isAdmin: false,
     };
-    const usersRepository = new UsersRepository();
+    const usersRepository = new RepositoryUser();
 
     const userNameAlredyExist = await usersRepository.findByUserName(data.userName);
 

@@ -2,15 +2,14 @@ import { compare } from "bcrypt";
 import { AppError } from "@errors/AppError";
 import { sign } from "jsonwebtoken";
 import { Response, Request } from "express";
-import { UsersRepository } from "@src/entity/User/UsersRepository";
-import { IUserTokenDTO } from "@src/entity/User/IUsersRepository";
-
+import { UserToken } from "@src/entity/User/InterfaceUser";
+import { RepositoryUser } from "@src/entity/User/RepositoryUser";
 
 class AuthenticaUserUseCase{
 
     async execute(request:Request, response:Response):Promise<Response>{
 
-        const userRespository = new UsersRepository();
+        const userRespository = new RepositoryUser();
         const {userName, password} = request.body;
 
         const user = await userRespository.findByUserName(userName);
@@ -31,7 +30,7 @@ class AuthenticaUserUseCase{
             expiresIn: "10h"            
         })
 
-        const resp: IUserTokenDTO = {
+        const resp: UserToken = {
             user:{
                 userName: user.userName,
             },

@@ -1,66 +1,75 @@
 import { PostgresDS } from "@src/data-source";
 import { DeleteResult, In } from "typeorm";
 import { Group } from "./Group";
-import { InterfaceGroup, CreateGroup, DeleteGroup, updateGroup } from "./InterfaceGroup";
+import {
+  InterfaceGroup,
+  CreateGroup,
+  DeleteGroup,
+  updateGroup,
+} from "./InterfaceGroup";
 import internal from "stream";
 
-class RepositoryGroup implements InterfaceGroup{
-    async list(): Promise<Group[]> {
-        const groups = await PostgresDS.manager.find(Group);
-        
-        return groups;
-    }
+class RepositoryGroup implements InterfaceGroup {
+  async list(userId: string): Promise<Group[]> {
+    const groupRep = PostgresDS.manager.getRepository(Group);
 
-    async find(id: string): Promise<Group | null> {
-        const groups = await PostgresDS.manager.findOneBy(Group ,{
-            id: id
-        });
-        
-        return groups;
-    }
+    return await groupRep.find({
+      relations: {
+        RescueGroup: true,
+        User: true
+      },
+      where: {
+        User: {
+          id: userId,
+        },
+      },
+    });
+  }
 
-    async create(group: CreateGroup): Promise<Group> {
-    
-        const newGroup= new Group();
+  async find(groupId: string): Promise<Group | null> {
+    const groups = await PostgresDS.manager.findOneBy(Group, {
+      id: groupId,
+    });
 
-        newGroup.name = group.name;
-        newGroup.temperature = group.temperature;
-        newGroup.humidity = group.humidity;
-        newGroup.noBreak = group.noBreak;
-        newGroup.User = group.User;
+    return groups;
+  }
 
-        await PostgresDS.manager.save(newGroup);
-    
-        return newGroup;
-    }
+  async create(group: CreateGroup): Promise<Group> {
+    const newGroup = new Group();
 
-    async delete(group: DeleteGroup): Promise<DeleteResult> {
-        
-        return await PostgresDS.manager.delete(
-            Group, {
-                id: In(group.ids) 
-            });
-    }
+    newGroup.name = group.name;
+    newGroup.temperature = group.temperature;
+    newGroup.humidity = group.humidity;
+    newGroup.noBreak = group.noBreak;
+    newGroup.User = group.User;
 
-    async update(group: updateGroup): Promise<Group | null> {
-        
-        const updtGroup = await PostgresDS.manager.findOneBy(
-            Group, {
-                id: group.id
-            });
-        
-        if(!updtGroup) return null;
+    await PostgresDS.manager.save(newGroup);
 
-        updtGroup.name = group.name;
-        updtGroup.temperature = group.temperature;
-        updtGroup.humidity = group.humidity;
-        updtGroup.noBreak = group.noBreak;
-        updtGroup.User = group.User;
+    return newGroup;
+  }
 
-        await PostgresDS.manager.save(Group, updtGroup);
+  async delete(group: DeleteGroup): Promise<DeleteResult> {
+    return await PostgresDS.manager.delete(Group, {
+      id: In(group.ids),
+    });
+  }
 
-        return updtGroup;
-    }
+  async update(group: updateGroup): Promise<Group | null> {
+    const updtGroup = await PostgresDS.manager.findOneBy(Group, {
+      id: group.id,
+    });
+
+    if (!updtGroup) return null;
+
+    updtGroup.name = group.name;
+    updtGroup.temperature = group.temperature;
+    updtGroup.humidity = group.humidity;
+    updtGroup.noBreak = group.noBreak;
+
+    await PostgresDS.manager.save(Group, updtGroup);
+
+    return updtGroup;
+  }
 }
 
-export {RepositoryGroup}
+export { RepositoryGroup };

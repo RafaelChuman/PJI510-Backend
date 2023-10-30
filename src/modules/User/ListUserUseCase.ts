@@ -1,10 +1,10 @@
-import { UsersRepository } from "@src/entity/User/UsersRepository";
+import { RepositoryUser } from "@src/entity/User/RepositoryUser";
 import { AppError } from "@src/errors/AppError";
 import { Response, Request } from "express";
 
 class ListUserUseCase {
   async execute(request: Request, response: Response): Promise<Response> {
-    const userRespository = new UsersRepository();
+    const userRespository = new RepositoryUser();
     const userName = request.query?.userName;
     const groupByMonth = request.query?.groupByMonth;
 

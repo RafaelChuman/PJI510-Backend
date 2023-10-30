@@ -20,15 +20,14 @@ interface updateGroup {
   temperature: number;
   humidity: number;
   noBreak: boolean;
-  User: User;
 }
 
 interface InterfaceGroup {
-  create(zone: CreateGroup): Promise<Group>;
-  delete(zone: DeleteGroup): Promise<DeleteResult>;
-  update(zone: updateGroup): Promise<Group | null>;
-  list(): Promise<Group[]>;
-  find(id: string): Promise<Group | null>;
+  create(data: CreateGroup): Promise<Group>;
+  delete(data: DeleteGroup): Promise<DeleteResult>;
+  update(data: updateGroup): Promise<Group | null>;
+  list(userId: string): Promise<Group[]>;
+  find(groupId: string): Promise<Group | null>;
 }
 
 export { InterfaceGroup, CreateGroup, updateGroup, DeleteGroup };
