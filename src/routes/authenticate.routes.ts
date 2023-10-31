@@ -1,11 +1,11 @@
+import { authenticaUser } from "@src/modules/User";
 import { Router } from "express"
-import { authenticaUserUseCase }  from "@src/modules/User";
 
 const authenticateRoutes = Router();
 
 
 authenticateRoutes.post("/", (request, response) => 
-    authenticaUserUseCase.execute(request, response)
+    authenticaUser.execute(request, response)
 );
 
 export {authenticateRoutes};

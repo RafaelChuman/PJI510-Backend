@@ -1,15 +1,15 @@
-import { AuthenticaUserUseCase } from "./authenticateUserUseCase";
-import { CreateUserUseCase } from "./CreateUserUseCase";
-import { ListUserUseCase } from "./ListUserUseCase";
+import { CreateUser } from "./CreateUser";
+import { ListUser } from "./ListUser";
+import { AuthenticaUser } from "./authenticateUser";
 
 
 
-const listUserUseCase = new ListUserUseCase()
-const authenticaUserUseCase = new AuthenticaUserUseCase();
-const createUserUseCase = new CreateUserUseCase();
+const listUser = new ListUser()
+const authenticaUser = new AuthenticaUser();
+const createUser = new CreateUser();
 
 export{
-    listUserUseCase, 
-    authenticaUserUseCase,
-    createUserUseCase,
+    listUser, 
+    authenticaUser,
+    createUser,
 }

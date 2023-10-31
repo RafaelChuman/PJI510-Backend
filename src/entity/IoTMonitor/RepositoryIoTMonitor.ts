@@ -1,16 +1,16 @@
 import { Between, DeleteResult, In } from "typeorm";
 import {
   InterfaceIoTMonitor,
-  CreateIoTMonitor,
-  ListIoTMonitorByIoT,
-  ListIoTMonitorByUser,
-  DeleteIoTMonitor,
+  DTOCreateIoTMonitor,
+  DTOListIoTMonitorByIoT,
+  DTOListIoTMonitorByUser,
+  DTODeleteIoTMonitor,
 } from "./InterfaceIoTMonitor";
 import { PostgresDS } from "@src/data-source";
 import { IoTMonitor } from "./IoTMonitor";
 
 class RepositoryIoTMonitor implements InterfaceIoTMonitor {
-  async create(data: CreateIoTMonitor): Promise<IoTMonitor | null> {
+  async create(data: DTOCreateIoTMonitor): Promise<IoTMonitor | null> {
     const ioTMonitorRep = PostgresDS.getRepository(IoTMonitor);
 
     const newIoTMonitor = new IoTMonitor();
@@ -24,7 +24,7 @@ class RepositoryIoTMonitor implements InterfaceIoTMonitor {
     return resp;
   }
 
-  async listByIoT(data: ListIoTMonitorByIoT): Promise<IoTMonitor[] | null> {
+  async listByIoT(data: DTOListIoTMonitorByIoT): Promise<IoTMonitor[] | null> {
     const ioTMonitorRep = PostgresDS.getRepository(IoTMonitor);
     let whereConstrant = {};
 
@@ -53,16 +53,18 @@ class RepositoryIoTMonitor implements InterfaceIoTMonitor {
     });
   }
 
-  async listByUser(data: ListIoTMonitorByUser): Promise<IoTMonitor[] | null> {
+  async listByUser(
+    data: DTOListIoTMonitorByUser
+  ): Promise<IoTMonitor[] | null> {
     const ioTMonitorRep = PostgresDS.getRepository(IoTMonitor);
     let whereConstrant = {};
 
-    if (data.user)
+    if (data.userId)
       whereConstrant = {
         ...whereConstrant,
         IoT: {
           Group: {
-            User: data.user,
+            User: { id: data.userId },
           },
         },
       };
@@ -86,10 +88,10 @@ class RepositoryIoTMonitor implements InterfaceIoTMonitor {
     });
   }
 
-  async delete(data: DeleteIoTMonitor): Promise<IoTMonitor[]> {
+  async delete(data: DTODeleteIoTMonitor): Promise<IoTMonitor[]> {
     const ioTMonitorRep = PostgresDS.getRepository(IoTMonitor);
 
-    return  await ioTMonitorRep.remove(data.ioTMonitor);
+    return await ioTMonitorRep.remove(data.ioTMonitor);
   }
 }
 

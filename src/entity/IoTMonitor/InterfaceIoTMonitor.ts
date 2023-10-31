@@ -3,40 +3,40 @@ import { IoT } from "../IoT/IoT";
 import { User } from "../User/User";
 import { IoTMonitor } from "./IoTMonitor";
 
-interface CreateIoTMonitor {
+interface DTOCreateIoTMonitor {
   temperature: number;
   humidity: number;
   noBreak: boolean;
   ioT: IoT;
 }
 
-interface ListIoTMonitorByIoT {
+interface DTOListIoTMonitorByIoT {
   ioT: IoT[];
   dateBegin?: Date;
   dateEnd?: Date;
 }
 
-interface ListIoTMonitorByUser {
-  user: User;
+interface DTOListIoTMonitorByUser {
+  userId: string;
   dateBegin?: Date;
   dateEnd?: Date;
 }
 
-interface DeleteIoTMonitor {
+interface DTODeleteIoTMonitor {
   ioTMonitor: IoTMonitor[];
 }
 
 interface InterfaceIoTMonitor {
-  create(data: CreateIoTMonitor): Promise<IoTMonitor | null>;
-  listByIoT(data: ListIoTMonitorByIoT): Promise<IoTMonitor[] | null>;
-  listByUser(data: ListIoTMonitorByUser): Promise<IoTMonitor[] | null>;
-  delete(data: DeleteIoTMonitor): Promise<IoTMonitor[]>;
+  create(data: DTOCreateIoTMonitor): Promise<IoTMonitor | null>;
+  listByIoT(data: DTOListIoTMonitorByIoT): Promise<IoTMonitor[] | null>;
+  listByUser(data: DTOListIoTMonitorByUser): Promise<IoTMonitor[] | null>;
+  delete(data: DTODeleteIoTMonitor): Promise<IoTMonitor[]>;
 }
 
 export {
   InterfaceIoTMonitor,
-  CreateIoTMonitor,
-  ListIoTMonitorByIoT,
-  ListIoTMonitorByUser,
-  DeleteIoTMonitor,
+  DTOCreateIoTMonitor,
+  DTOListIoTMonitorByIoT,
+  DTOListIoTMonitorByUser,
+  DTODeleteIoTMonitor,
 };

@@ -1,6 +1,6 @@
 import { User } from "./User";
 
-interface CreateUser {
+interface DTOCreateUser {
   name: string;
   userName: string;
   password: string;
@@ -11,7 +11,7 @@ interface CreateUser {
   telegram: number;
 }
 
-interface AuthenticateUser {
+interface DTOAuthenticateUser {
   userName: string;
   password: string;
 }
@@ -24,11 +24,11 @@ interface UserToken {
 }
 
 interface InterfaceUser {
-  create(data: CreateUser): Promise<User>;
+  create(data: DTOCreateUser): Promise<User>;
   list(): Promise<User[]>;
   findByUserName(userName: string): Promise<User | null>;
   findById(IdParm: string): Promise<User | null>;
   listAllUsersGroupedByMonth(): Promise<User[]>;
 }
 
-export { InterfaceUser, CreateUser, AuthenticateUser, UserToken };
+export { InterfaceUser, DTOCreateUser, DTOAuthenticateUser, UserToken };

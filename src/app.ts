@@ -1,18 +1,16 @@
 import express, { NextFunction, Request, Response } from "express";
-import cors from 'cors';
+import cors from "cors";
 
 import { AppError } from "@errors/AppError";
 import "express-async-errors";
 
-import { usersRoutes } from "@routes/users.routes";
-import { zonesRoutes } from "@src/routes/zones.routes";
 import { authenticateRoutes } from "@routes/authenticate.routes";
-import { activitiesRoutes } from "@src/routes/activities.routes";
-import { lubrificationSystemServicesRoutes } from "./routes/lubricationSystemService.routes";
 import { ensureAuthenticated } from "./midlewares/ensureAuthenticated";
-import { ersRoutes } from "./routes/ers.routes";
-import { oilMonitorRoutes } from "./routes/oilMonitor.routes";
-import { groupRoutes } from "./routes/group.routes";
+import { ioTRoutes } from "./routes/IoT.routes";
+import { oilMonitorRoutes } from "./routes/IoTMonitor.routes";
+import { groupRoutes } from "./routes/Group.routes";
+import { userRoutes } from "./routes/User.routes";
+import { RescueGroupRoutes } from "./routes/RescueGroup.routes";
 
 const app = express();
 
@@ -22,46 +20,37 @@ app.use(express.json());
 
 app.use(authenticateRoutes);
 
-app.use("/user", usersRoutes);
-
-app.use("/oilMonitor", oilMonitorRoutes);
-
-app.use(ensureAuthenticated);
+app.use("/user", userRoutes);
 
 //Midleware para validar a autenticação de todas as rotas seguintes
+app.use(ensureAuthenticated);
+
 app.use("/group", groupRoutes);
 
-app.use("/zones", zonesRoutes);
+app.use("/rescueGroup", RescueGroupRoutes);
 
-app.use("/activities", activitiesRoutes);
+app.use("/ioT", ioTRoutes);
 
-app.use("/lubrificationSystems", lubrificationSystemServicesRoutes);
-
-app.use("/ers", ersRoutes);
-
-
+app.use("/ioTMonitor", oilMonitorRoutes);
 
 app.use(
-    (err: Error, request: Request, response: Response, next: NextFunction) => {
+  (err: Error, request: Request, response: Response, next: NextFunction) => {
+    // response.setHeader("Access-Control-Allow-Origin", "*");
+    // response.setHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
 
-        // response.setHeader("Access-Control-Allow-Origin", "*");
-        // response.setHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+    // response.header("Access-Control-Allow-Origin", "*");
+    // response.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+    // response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 
-        // response.header("Access-Control-Allow-Origin", "*");
-        // response.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-        // response.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-
-        if (err instanceof AppError) {
-            return response.status(err.statusCode).json({ message: err.message });
-        }
-
-        return response.status(500).json({
-            status: "Error",
-            message: `Internal Server Errorr - ${err.message}`,
-        });
+    if (err instanceof AppError) {
+      return response.status(err.statusCode).json({ message: err.message });
     }
+
+    return response.status(500).json({
+      status: "Error",
+      message: `Internal Server Errorr - ${err.message}`,
+    });
+  }
 );
-
-
 
 export default app;

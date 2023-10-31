@@ -3,9 +3,9 @@ import { DeleteResult, In } from "typeorm";
 import { Group } from "./Group";
 import {
   InterfaceGroup,
-  CreateGroup,
-  DeleteGroup,
-  updateGroup,
+  DTOCreateGroup,
+  DTODeleteGroup,
+  DTOUpdateGroup,
 } from "./InterfaceGroup";
 import internal from "stream";
 
@@ -34,7 +34,7 @@ class RepositoryGroup implements InterfaceGroup {
     return groups;
   }
 
-  async create(group: CreateGroup): Promise<Group> {
+  async create(group: DTOCreateGroup): Promise<Group> {
     const newGroup = new Group();
 
     newGroup.name = group.name;
@@ -48,13 +48,13 @@ class RepositoryGroup implements InterfaceGroup {
     return newGroup;
   }
 
-  async delete(group: DeleteGroup): Promise<DeleteResult> {
+  async delete(group: DTODeleteGroup): Promise<DeleteResult> {
     return await PostgresDS.manager.delete(Group, {
       id: In(group.ids),
     });
   }
 
-  async update(group: updateGroup): Promise<Group | null> {
+  async update(group: DTOUpdateGroup): Promise<Group | null> {
     const updtGroup = await PostgresDS.manager.findOneBy(Group, {
       id: group.id,
     });

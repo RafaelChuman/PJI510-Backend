@@ -3,25 +3,22 @@ import { IoT } from "./IoT";
 import { Group } from "../Group/Group";
 import { User } from "../User/User";
 
-interface CreateIoT{
+interface DTOCreateIoT{
     name: string;
     group: Group;
 };
 
-interface ListIoTByUser{
-    user: User;
-}
 
-interface DeleteIoT{
+interface DTODeleteIoT{
     ioT: IoT[];
 };
 
 interface InterfaceIoT{
     
-    create(data: CreateIoT): Promise<IoT | null>;
-    listIoTByUser(data: ListIoTByUser): Promise<IoT[] | null>;
-    delete(data: DeleteIoT): Promise<IoT[]>;
+    create(data: DTOCreateIoT): Promise<IoT | null>;
+    listIoTByUser(userId: string): Promise<IoT[] | null>;
+    delete(data: DTODeleteIoT): Promise<IoT[]>;
     
 };
 
-export {InterfaceIoT, CreateIoT, ListIoTByUser, DeleteIoT};
+export {InterfaceIoT, DTOCreateIoT, DTODeleteIoT};

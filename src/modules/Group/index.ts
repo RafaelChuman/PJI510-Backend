@@ -1,18 +1,18 @@
-import { CreateGroupUseCase } from "./createGroupUseCase";
-import { DeleteGroupUseCase } from "./deleteGroupUseCase";
-import { ListGroupUseCase } from "./listGroupUseCase";
-import { UpdateGroupUseCase } from "./updateGroupUseCase";
+import { CreateGroup } from "./createGroup";
+import { DeleteGroup } from "./deleteGroup";
+import { ListGroup } from "./listGroup";
+import { UpdateGroup } from "./updateGroup";
 
 
 
-const listGroupUseCase = new ListGroupUseCase()
-const createGroupUseCase = new CreateGroupUseCase();
-const deleteGroupUseCase = new DeleteGroupUseCase();
-const updateGroupUseCase = new UpdateGroupUseCase();
+const listGroup = new ListGroup()
+const createGroup = new CreateGroup();
+const deleteGroup = new DeleteGroup();
+const updateGroup = new UpdateGroup();
 
 export{
-    listGroupUseCase, 
-    createGroupUseCase,
-    deleteGroupUseCase,
-    updateGroupUseCase,
+    listGroup, 
+    createGroup,
+    deleteGroup,
+    updateGroup,
 }

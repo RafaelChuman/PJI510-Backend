@@ -3,30 +3,30 @@ import { RescueGroup } from "./RescueGroup";
 import { Group } from "../Group/Group";
 import { User } from "../User/User";
 
-interface CreateRescueGroup {
+interface DTOCreateRescueGroup {
   group: Group;
   users: User[];
 }
 
-interface DeleteRescueGroup {
+interface DTODeleteRescueGroup {
   group: Group;
 }
 
-interface UpdateRescueGroup {
+interface DTOUpdateRescueGroup {
   group: Group;
   users: User[];
 }
 
 interface InterfaceRescueGroup {
-  create(data: CreateRescueGroup): Promise<RescueGroup[]>;
-  findByGroup(idGroup: string): Promise<RescueGroup[] | null>;
-  deleteByGroup(data: DeleteRescueGroup): Promise<DeleteResult>;
-  updateByGroup(data: UpdateRescueGroup): Promise<RescueGroup[]>;
+  create(data: DTOCreateRescueGroup): Promise<RescueGroup[]>;
+  findByUser(idUser: string): Promise<RescueGroup[] | null>;
+  deleteByGroup(data: DTODeleteRescueGroup): Promise<DeleteResult>;
+  updateByGroup(data: DTOUpdateRescueGroup): Promise<RescueGroup[]>;
 }
 
 export {
   InterfaceRescueGroup,
-  CreateRescueGroup,
-  DeleteRescueGroup,
-  UpdateRescueGroup,
+  DTOCreateRescueGroup,
+  DTODeleteRescueGroup,
+  DTOUpdateRescueGroup,
 };

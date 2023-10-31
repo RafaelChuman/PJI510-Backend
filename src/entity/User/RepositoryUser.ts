@@ -1,9 +1,9 @@
 import { PostgresDS } from "@src/data-source";
-import { CreateUser, InterfaceUser } from "./InterfaceUser";
+import { DTOCreateUser, InterfaceUser } from "./InterfaceUser";
 import { User } from "./User";
 
 class RepositoryUser implements InterfaceUser {
-  async create(data: CreateUser): Promise<User> {
+  async create(data: DTOCreateUser): Promise<User> {
     const user = new User();
 
     user.name = data.name;

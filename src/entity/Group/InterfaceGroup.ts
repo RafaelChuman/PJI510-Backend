@@ -2,7 +2,7 @@ import { DeleteResult } from "typeorm";
 import { Group } from "./Group";
 import { User } from "../User/User";
 
-interface CreateGroup {
+interface DTOCreateGroup {
   name: string;
   temperature: number;
   humidity: number;
@@ -10,11 +10,11 @@ interface CreateGroup {
   User: User;
 }
 
-interface DeleteGroup {
+interface DTODeleteGroup {
   ids: string[];
 }
 
-interface updateGroup {
+interface DTOUpdateGroup {
   id: string;
   name: string;
   temperature: number;
@@ -23,11 +23,11 @@ interface updateGroup {
 }
 
 interface InterfaceGroup {
-  create(data: CreateGroup): Promise<Group>;
-  delete(data: DeleteGroup): Promise<DeleteResult>;
-  update(data: updateGroup): Promise<Group | null>;
+  create(data: DTOCreateGroup): Promise<Group>;
+  delete(data: DTODeleteGroup): Promise<DeleteResult>;
+  update(data: DTOUpdateGroup): Promise<Group | null>;
   list(userId: string): Promise<Group[]>;
   find(groupId: string): Promise<Group | null>;
 }
 
-export { InterfaceGroup, CreateGroup, updateGroup, DeleteGroup };
+export { InterfaceGroup, DTOCreateGroup, DTODeleteGroup, DTOUpdateGroup };
