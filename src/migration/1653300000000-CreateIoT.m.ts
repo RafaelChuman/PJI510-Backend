@@ -21,7 +21,7 @@ export class CreateIoT1653300000000 implements MigrationInterface {
         },
         {
           name: "name",
-          type: "string",
+          type: "varchar",
         },
         {
           name: "createdAt",

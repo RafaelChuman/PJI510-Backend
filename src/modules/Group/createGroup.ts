@@ -6,6 +6,9 @@ import { RepositoryGroup } from "@src/entity/Group/RepositoryGroup";
 
 class CreateGroup {
   async execute(request: Request, response: Response): Promise<Response> {
+    
+    
+    
     const data: DTOCreateGroup = {
       name: request.body.name,
 
@@ -13,8 +16,9 @@ class CreateGroup {
       humidity: request.body.humidity,
       noBreak: request.body.noBreak,
 
-      User: request.body.User,
+      userId: request.headers.userId?.toString()  || "",
     };
+    
     const groupRepository = new RepositoryGroup();
 
     const groupNameAlredyExist = await groupRepository.find(data.name);

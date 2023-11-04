@@ -33,7 +33,7 @@ export class CreateGroup1652300000000 implements MigrationInterface {
           },
           {
             name: "noBreak",
-            type: "boolean",
+            type: "integer",
           },
           {
             name: "userId",

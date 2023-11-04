@@ -6,8 +6,8 @@ interface DTOCreateGroup {
   name: string;
   temperature: number;
   humidity: number;
-  noBreak: boolean;
-  User: User;
+  noBreak: number;
+  userId: string;
 }
 
 interface DTODeleteGroup {
@@ -19,7 +19,7 @@ interface DTOUpdateGroup {
   name: string;
   temperature: number;
   humidity: number;
-  noBreak: boolean;
+  noBreak: number;
 }
 
 interface InterfaceGroup {
@@ -27,7 +27,7 @@ interface InterfaceGroup {
   delete(data: DTODeleteGroup): Promise<DeleteResult>;
   update(data: DTOUpdateGroup): Promise<Group | null>;
   list(userId: string): Promise<Group[]>;
-  find(groupId: string): Promise<Group | null>;
+  find(groupName: string): Promise<Group | null>;
 }
 
 export { InterfaceGroup, DTOCreateGroup, DTODeleteGroup, DTOUpdateGroup };

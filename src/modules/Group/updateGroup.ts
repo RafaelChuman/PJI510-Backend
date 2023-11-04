@@ -7,9 +7,9 @@ class UpdateGroup {
     const data: DTOUpdateGroup = {
       id: request.body.id,
       name: request.body.name,
-      humidity: request.body.cep,
-      temperature: request.body.cellphone,
-      noBreak: request.body.numberAddress,
+      humidity: request.body.humidity,
+      temperature: request.body.temperature,
+      noBreak: request.body.noBreak,
     };
 
     const groupRepository = new RepositoryGroup();

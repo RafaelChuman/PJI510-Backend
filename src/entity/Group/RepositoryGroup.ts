@@ -8,6 +8,7 @@ import {
   DTOUpdateGroup,
 } from "./InterfaceGroup";
 import internal from "stream";
+import { User } from "../User/User";
 
 class RepositoryGroup implements InterfaceGroup {
   async list(userId: string): Promise<Group[]> {
@@ -16,7 +17,7 @@ class RepositoryGroup implements InterfaceGroup {
     return await groupRep.find({
       relations: {
         RescueGroup: true,
-        User: true
+        User: true,
       },
       where: {
         User: {
@@ -26,26 +27,29 @@ class RepositoryGroup implements InterfaceGroup {
     });
   }
 
-  async find(groupId: string): Promise<Group | null> {
-    const groups = await PostgresDS.manager.findOneBy(Group, {
-      id: groupId,
+  async find(groupName: string): Promise<Group | null> {
+    const group = await PostgresDS.manager.findOneBy(Group, {
+      name: groupName,
     });
 
-    return groups;
+    return group;
   }
 
   async create(group: DTOCreateGroup): Promise<Group> {
     const newGroup = new Group();
+    const user = new User();
+
+    user.id = group.userId;
 
     newGroup.name = group.name;
     newGroup.temperature = group.temperature;
     newGroup.humidity = group.humidity;
     newGroup.noBreak = group.noBreak;
-    newGroup.User = group.User;
+    newGroup.User = user;
 
-    await PostgresDS.manager.save(newGroup);
+    const resp = await PostgresDS.manager.save(newGroup);
 
-    return newGroup;
+    return resp;
   }
 
   async delete(group: DTODeleteGroup): Promise<DeleteResult> {

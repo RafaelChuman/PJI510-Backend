@@ -1,6 +1,12 @@
 import { PostgresDS } from "@src/data-source";
-import { DTOCreateUser, InterfaceUser } from "./InterfaceUser";
+import {
+  DTOCreateUser,
+  DTODeleteUser,
+  DTOUpdateUser,
+  InterfaceUser,
+} from "./InterfaceUser";
 import { User } from "./User";
+import { DeleteResult, In } from "typeorm";
 
 class RepositoryUser implements InterfaceUser {
   async create(data: DTOCreateUser): Promise<User> {
@@ -15,9 +21,18 @@ class RepositoryUser implements InterfaceUser {
     user.celular = data.celular;
     user.telegram = data.telegram;
 
+    console.log("user");
+    console.log(user);
+
     await PostgresDS.manager.save(user);
 
     return user;
+  }
+
+  async delete(data: DTODeleteUser): Promise<DeleteResult> {
+    return await PostgresDS.manager.delete(User, {
+      id: In(data.ids),
+    });
   }
 
   async list(): Promise<User[]> {
@@ -27,10 +42,11 @@ class RepositoryUser implements InterfaceUser {
   }
 
   async listAllUsersGroupedByMonth(): Promise<User[]> {
-    const query = PostgresDS.manager.createQueryBuilder(User, "Users")
-    .select(`count(id), DATE_TRUNC('month', "createdAt")`)
-    .where(`date_part('year', "createdAt") = date_part('year', CURRENT_DATE)`)
-    .groupBy(`DATE_TRUNC('month', "createdAt")`)
+    const query = PostgresDS.manager
+      .createQueryBuilder(User, "Users")
+      .select(`count(id), DATE_TRUNC('month', "createdAt")`)
+      .where(`date_part('year', "createdAt") = date_part('year', CURRENT_DATE)`)
+      .groupBy(`DATE_TRUNC('month', "createdAt")`);
 
     const users = await query.execute();
 
@@ -51,6 +67,28 @@ class RepositoryUser implements InterfaceUser {
     });
 
     return user;
+  }
+
+  async update(user: DTOUpdateUser): Promise<User | null> {
+    const updtUser = await PostgresDS.manager.findOneBy(User, {
+      id: user.id,
+    });
+
+    if (!updtUser) return null;
+
+    updtUser.name = user.name;
+
+    updtUser.isAdmin = user.isAdmin;
+    updtUser.imgPath = user.imgPath;
+    updtUser.email = user.email;
+    updtUser.celular = user.celular;
+    updtUser.telegram = user.telegram;
+
+    if (user.password) updtUser.password = user.password;
+
+    await PostgresDS.manager.save(User, updtUser);
+
+    return updtUser;
   }
 }
 

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { IoT } from "../IoT/IoT";
 import { User } from "../User/User";
 import { RescueGroup } from "../RescueGroup/RescueGroup";
@@ -21,9 +21,10 @@ export class Group
     humidity: number;
 
     @Column()
-    noBreak: boolean;
+    noBreak: number;
 
     @ManyToOne(() => User, (user) => user.Group)
+    @JoinColumn({name:"userId"})
     User: User;
 
     @OneToMany(()=> IoT, (iot) => iot.Group)

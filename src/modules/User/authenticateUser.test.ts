@@ -34,7 +34,7 @@ describe("Unit Test from User", () => {
     it("Should get a List of Users", async () => {
 
         if (PostgresDS.isInitialized) {
-            const response = await request(serverHocked).get('/users');
+            const response = await request(serverHocked).get('/user');
 
             expect(response.status).toBe(201);
         }

@@ -1,52 +1,56 @@
 import { AppError } from "@errors/AppError";
 import { UserToken } from "@src/entity/User/InterfaceUser";
 import { RepositoryUser } from "@src/entity/User/RepositoryUser";
-import {NextFunction, Request, Response} from "express";
+import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
-export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
-    
-    //Bearer dkdfvmdlkfvmkdm
-    const token = request.headers.authorization;
+export async function ensureAuthenticated(
+  request: Request,
+  response: Response,
+  next: NextFunction
+) {
+  //Bearer dkdfvmdlkfvmkdm
+  const token = request.headers.authorization;
 
-    if(!token)
-    {
-        throw new AppError("Token Missing", 401);
+  if (!token) {
+    throw new AppError("Token Missing", 401);
+  }
+
+  try {
+    const decoded = verify(token, "brasil123");
+
+    if (!decoded || typeof decoded == "string") {
+      console.log(typeof decoded);
+      throw new AppError("User does not exist.", 401);
     }
 
-    try{        
-        const decoded  = verify(token, "brasil123");
+    const userToken: UserToken = {
+      userId: decoded.userId,
+      userName: decoded.userName,
+      isAdmin: decoded.isAdmin,
+    };
 
-        console.log(decoded)
+    //const userRespository = new RepositoryUser();
 
-        if(!decoded.sub)
-        {
-            throw new  AppError("User does not exist.", 401)
-        }
+    //Trow the user Paramrs to the next function. So after the validation midleware
+    //We don't need to ask to the database for the datas of ho is logged
+    //We have this problem because the Token only pass the ID and nothing more
+    //const user = await userRespository.findById(userToken.userId);
 
-        const userId = decoded.sub.toString();
+    // if (!user) {
+    //   throw new AppError("User does not exist.", 401);
+    // }
 
-        const userRespository = new RepositoryUser();
-        
-        //Trow the user Paramrs to the next function. So after the validation midleware
-        //We don't need to ask to the database for the datas of ho is logged
-        //We have this problem because the Token only pass the ID and nothing more
-        const user = await userRespository.findById(userId);
+    request.headers.userId = userToken.userId;
+    request.headers.userName = userToken.userName;
+    request.headers.isAdmin = String(userToken.isAdmin);
 
-        
-    
-        if(!user){
-            throw new  AppError("User does not exist.", 401)
-        }
-    
+    next();
+  } catch {
+    request.headers.userId = "";
+    request.headers.userName = "";
+    request.headers.isAdmin = "";
 
-        request.headers.userId =   user.id.toString();
-        request.headers.userName = user.userName.toString();
-        request.headers.isAdmin =  user.isAdmin.toString(); 
-
-        next();
-    }catch{
-        throw new AppError("Invalid Token", 401);
-    }        
-} 
-    
+    throw new AppError("Invalid Token", 401);
+  }
+}

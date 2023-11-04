@@ -35,11 +35,11 @@ export class CreateUser1652200000000 implements MigrationInterface {
           },
           {
             name: "celular",
-            type: "integer",
+            type: "float",
           },
           {
             name: "telegram",
-            type: "integer",
+            type: "varchar",
           },
           {
             name: "isAdmin",

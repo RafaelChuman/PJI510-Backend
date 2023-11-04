@@ -28,7 +28,7 @@ export class User {
     celular: number
 
     @Column()
-    telegram: number
+    telegram: string
 
     @Column()
     isAdmin: boolean
