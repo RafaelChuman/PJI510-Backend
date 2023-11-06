@@ -11,7 +11,7 @@ import internal from "stream";
 import { User } from "../User/User";
 
 class RepositoryGroup implements InterfaceGroup {
-  async list(userId: string): Promise<Group[]> {
+  async listByUser(userId: string): Promise<Group[]> {
     const groupRep = PostgresDS.manager.getRepository(Group);
 
     return await groupRep.find({
@@ -27,9 +27,19 @@ class RepositoryGroup implements InterfaceGroup {
     });
   }
 
-  async find(groupName: string): Promise<Group | null> {
+  async findByName(groupName: string): Promise<Group | null> {
     const group = await PostgresDS.manager.findOneBy(Group, {
       name: groupName,
+    });
+
+    return group;
+  }
+  
+  async findByIoT(idIoT: string): Promise<Group | null> {
+    const group = await PostgresDS.manager.findOneBy(Group, {
+      IoT: {
+        id: idIoT
+      },
     });
 
     return group;

@@ -7,7 +7,7 @@ export class CreateIoTMonitor {
 
         const data: DTOCreateIoTMonitor = request.body;
 
-        const ioTMonitorRep= new RepositoryIoTMonitor()
+        const ioTMonitorRep = new RepositoryIoTMonitor()
 
         const resp = await ioTMonitorRep.create(data);
 

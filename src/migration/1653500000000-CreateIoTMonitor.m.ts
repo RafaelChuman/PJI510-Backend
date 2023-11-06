@@ -21,15 +21,15 @@ export class CreateIoTMonitor1653500000000 implements MigrationInterface {
 
         {
           name: "temperature",
-          type: "integer",
+          type: "real",
         },
         {
           name: "humidity",
-          type: "integer",
+          type: "real",
         },
         {
           name: "noBreak",
-          type: "uuid",
+          type: "boolean",
         },
         {
           name: "createdAt",

@@ -26,8 +26,9 @@ interface InterfaceGroup {
   create(data: DTOCreateGroup): Promise<Group>;
   delete(data: DTODeleteGroup): Promise<DeleteResult>;
   update(data: DTOUpdateGroup): Promise<Group | null>;
-  list(userId: string): Promise<Group[]>;
-  find(groupName: string): Promise<Group | null>;
+  listByUser(userId: string): Promise<Group[]>;
+  findByName(groupName: string): Promise<Group | null>;
+  findByIoT(idIoT: string): Promise<Group | null>;
 }
 
 export { InterfaceGroup, DTOCreateGroup, DTODeleteGroup, DTOUpdateGroup };

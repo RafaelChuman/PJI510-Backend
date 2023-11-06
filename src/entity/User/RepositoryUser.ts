@@ -21,9 +21,6 @@ class RepositoryUser implements InterfaceUser {
     user.celular = data.celular;
     user.telegram = data.telegram;
 
-    console.log("user");
-    console.log(user);
-
     await PostgresDS.manager.save(user);
 
     return user;

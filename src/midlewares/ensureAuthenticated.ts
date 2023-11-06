@@ -20,7 +20,6 @@ export async function ensureAuthenticated(
     const decoded = verify(token, "brasil123");
 
     if (!decoded || typeof decoded == "string") {
-      console.log(typeof decoded);
       throw new AppError("User does not exist.", 401);
     }
 

@@ -7,10 +7,10 @@ import "express-async-errors";
 import { authenticateRoutes } from "@routes/authenticate.routes";
 import { ensureAuthenticated } from "./midlewares/ensureAuthenticated";
 import { ioTRoutes } from "./routes/IoT.routes";
-import { oilMonitorRoutes } from "./routes/IoTMonitor.routes";
 import { groupRoutes } from "./routes/Group.routes";
 import { userRoutes } from "./routes/User.routes";
 import { RescueGroupRoutes } from "./routes/RescueGroup.routes";
+import { iotMonitorRoutes } from "./routes/IoTMonitor.routes";
 
 const app = express();
 
@@ -18,20 +18,25 @@ app.use(cors());
 
 app.use(express.json());
 
+app.use("/ioTMonitor", iotMonitorRoutes);
+
 app.use(authenticateRoutes);
 
 app.use("/user", userRoutes);
 
 //Midleware para validar a autenticação de todas as rotas seguintes
+
 app.use(ensureAuthenticated);
 
 app.use("/group", groupRoutes);
+
+
 
 app.use("/rescueGroup", RescueGroupRoutes);
 
 app.use("/ioT", ioTRoutes);
 
-app.use("/ioTMonitor", oilMonitorRoutes);
+
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {

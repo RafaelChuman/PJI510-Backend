@@ -5,7 +5,7 @@ import { request, Request, Response, Router } from "express";
 
 const ioTRoutes = Router();
 
-ioTRoutes.post("/", ensureIsAdmin, (request, response) => 
+ioTRoutes.post("/", (request, response) => 
     createIoT.execute(request, response)
 );
 

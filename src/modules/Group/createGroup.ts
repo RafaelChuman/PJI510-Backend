@@ -21,7 +21,7 @@ class CreateGroup {
     
     const groupRepository = new RepositoryGroup();
 
-    const groupNameAlredyExist = await groupRepository.find(data.name);
+    const groupNameAlredyExist = await groupRepository.findByName(data.name);
 
     if (groupNameAlredyExist) {
       return response.status(200).json("Group Already Exists.");

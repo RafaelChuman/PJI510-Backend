@@ -7,7 +7,7 @@ interface DTOCreateIoTMonitor {
   temperature: number;
   humidity: number;
   noBreak: boolean;
-  ioT: IoT;
+  ioTId: string;
 }
 
 interface DTOListIoTMonitorByIoT {

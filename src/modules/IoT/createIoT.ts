@@ -12,6 +12,7 @@ export class CreateIoT {
       name: request.body.name,
     };
 
+    
     const resp = await ioTRep.create(data);
 
     return response.status(200).json(resp);

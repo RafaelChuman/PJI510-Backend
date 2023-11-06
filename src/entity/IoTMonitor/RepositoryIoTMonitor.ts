@@ -8,20 +8,27 @@ import {
 } from "./InterfaceIoTMonitor";
 import { PostgresDS } from "@src/data-source";
 import { IoTMonitor } from "./IoTMonitor";
+import { IoT } from "../IoT/IoT";
 
 class RepositoryIoTMonitor implements InterfaceIoTMonitor {
   async create(data: DTOCreateIoTMonitor): Promise<IoTMonitor | null> {
-    const ioTMonitorRep = PostgresDS.getRepository(IoTMonitor);
 
-    const newIoTMonitor = new IoTMonitor();
-    newIoTMonitor.humidity = data.humidity;
-    newIoTMonitor.temperature = data.temperature;
-    newIoTMonitor.noBreak = data.noBreak;
-    newIoTMonitor.IoT = data.ioT;
+    const ioT = new IoT();
 
-    const resp = await PostgresDS.manager.save(newIoTMonitor);
+    ioT.id = data.ioTId;
 
-    return resp;
+    if (ioT) {
+      const newIoTMonitor = new IoTMonitor();
+      newIoTMonitor.humidity = data.humidity;
+      newIoTMonitor.temperature = data.temperature;
+      newIoTMonitor.noBreak = data.noBreak;
+      newIoTMonitor.IoT = ioT;
+
+      const resp = await PostgresDS.manager.save(IoTMonitor, newIoTMonitor);
+
+      return resp;
+    }
+    return null;
   }
 
   async listByIoT(data: DTOListIoTMonitorByIoT): Promise<IoTMonitor[] | null> {

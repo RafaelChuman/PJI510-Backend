@@ -10,8 +10,6 @@ class AuthenticaUser {
     const userRespository = new RepositoryUser();
     const { userName, password } = request.body;
 
-    console.log(userName);
-
     const user = await userRespository.findByUserName(userName);
 
     if (!user) {
