@@ -27,14 +27,14 @@ ioTIds = ["86cba34b-484e-4c85-9706-0b000b5fee49", "915b09ae-2a15-4e24-b345-08e56
 for i in range(10000):
     
     index = 0
-    while(index < 3):
+    while(index < 4):
         ioTId = ioTIds[index]
         temperature = randint(23, 27)
         humidity = randint(50, 60)
         noBreak = True
 
         now = datetime.datetime.now()
-        createdAt = now + datetime.timedelta(minutes=i*5)
+        createdAt = now + datetime.timedelta(minutes=((i*5)-60))
         
         id = str(uuid.uuid4())
         cur.execute(insertIoTMonitor, (id, temperature, humidity, createdAt, ioTId, noBreak))
