@@ -2,6 +2,7 @@ import {
   InterfaceIoT,
   DTOCreateIoT,
   DTODeleteIoT,
+  DTOUpdateIoT,
 } from "./InterfaceIoT";
 import { IoT } from "./IoT";
 import { PostgresDS } from "@src/data-source";
@@ -17,6 +18,19 @@ export class RepositoryIoT implements InterfaceIoT {
     newIoT.Group = data.group;
 
     return await PostgresDS.manager.save(newIoT);
+  }
+
+  async update(data: DTOUpdateIoT): Promise<IoT | null> {
+    const updtIoT = await PostgresDS.manager.findOneBy(IoT, {
+      id: data.id,
+    });
+
+    if (!updtIoT) return null;
+
+    updtIoT.name = data.name;
+    updtIoT.Group = data.group;
+
+    return await PostgresDS.manager.save(updtIoT);
   }
 
   async listIoTByUser(userId: string): Promise<IoT[] | null> {

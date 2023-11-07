@@ -13,7 +13,10 @@ class CreateRescueGroup{
 
         const rescueGroupRep = new RepositoryRescueGroup();
 
+        // console.log("data")
+        // console.log(data)
         const resp = await rescueGroupRep.create(data);
+
         return response.status(200).json(resp);
     }
 

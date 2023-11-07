@@ -1,4 +1,4 @@
-import { DeleteResult, UpdateResult } from "typeorm";
+import { DeleteResult, InsertResult, UpdateResult } from "typeorm";
 import { RescueGroup } from "./RescueGroup";
 import { Group } from "../Group/Group";
 import { User } from "../User/User";
@@ -9,7 +9,7 @@ interface DTOCreateRescueGroup {
 }
 
 interface DTODeleteRescueGroup {
-  group: Group;
+  ids: string[];
 }
 
 interface DTOUpdateRescueGroup {
@@ -18,10 +18,12 @@ interface DTOUpdateRescueGroup {
 }
 
 interface InterfaceRescueGroup {
-  create(data: DTOCreateRescueGroup): Promise<RescueGroup[]>;
+  create(data: DTOCreateRescueGroup): Promise<InsertResult>;
   findByUser(idUser: string): Promise<RescueGroup[] | null>;
+  findByGroup(groupId: string): Promise<RescueGroup[] | null>;
   deleteByGroup(data: DTODeleteRescueGroup): Promise<DeleteResult>;
-  updateByGroup(data: DTOUpdateRescueGroup): Promise<RescueGroup[]>;
+  delete(data: DTODeleteRescueGroup): Promise<DeleteResult>;
+  updateByGroup(data: DTOUpdateRescueGroup): Promise<InsertResult>;
 }
 
 export {

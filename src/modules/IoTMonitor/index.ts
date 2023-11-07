@@ -1,10 +1,11 @@
-import { CreateIoTMonitor } from "./createIoTMonitor";
-import { DeleteIoTMonitor } from "./deleteIoTMonitor";
-import { ListIoTMonitor } from "./listOilMonitor";
+
+import { IoTMonitorCreate } from "./IoTMonitorCreate";
+import { IoTMonitorDelete } from "./IoTMonitorDelete";
+import { IoTMonitorList } from "./IoTMonitorList";
 
 
-const createIoTMonitor = new CreateIoTMonitor();
-const deleteIoTMonitor = new DeleteIoTMonitor();
-const listIoTMonitor = new ListIoTMonitor();
+const ioTMonitorCreate = new IoTMonitorCreate();
+const ioTMonitorDelete = new IoTMonitorDelete();
+const ioTMonitorList = new IoTMonitorList();
 
-export { createIoTMonitor, deleteIoTMonitor, listIoTMonitor }
+export { ioTMonitorCreate, ioTMonitorList, ioTMonitorDelete }

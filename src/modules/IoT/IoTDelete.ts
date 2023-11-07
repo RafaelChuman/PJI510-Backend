@@ -4,7 +4,7 @@ import { idText } from "typescript";
 import { RepositoryIoT } from "@src/entity/IoT/RepositoryIoT";
 import { DTODeleteIoT } from "@src/entity/IoT/InterfaceIoT";
 
-export class DeleteIoT {
+export class IoTDelete {
   async execute(request: Request, response: Response): Promise<Response> {
     const ioTRep = new RepositoryIoT();
 

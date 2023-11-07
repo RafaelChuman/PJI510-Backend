@@ -9,7 +9,7 @@ const RescueGroupRoutes = Router();
 
 const uploadPhoto = multer(uploadFile("./tmp/Zones"));
 
-RescueGroupRoutes.post("/", ensureIsAdmin, (request, response) =>
+RescueGroupRoutes.post("/", (request, response) =>
   createRescueGroup.execute(request, response)
 );
 

@@ -5,14 +5,17 @@ import { Response, Request } from "express";
 class DeleteRescueGroup {
   async execute(request: Request, response: Response): Promise<Response> {
     const data: DTODeleteRescueGroup = {
-      group: request.body.group,
+      ids: request.body.ids,
     };
 
-    if (data.group) {
-      if (typeof data.group === "string") {
+    if (data.ids.length > 0) {
+      if (typeof data.ids[0] === "string") {
         const rescueGroupRep = new RepositoryRescueGroup();
 
-        const resp = await rescueGroupRep.deleteByGroup(data);
+        console.log("data")
+        console.log(data)
+
+        const resp = await rescueGroupRep.delete(data);
 
         return response.status(200).json(resp);
       }

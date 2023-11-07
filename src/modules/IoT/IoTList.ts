@@ -1,7 +1,7 @@
 import { RepositoryIoT } from "@src/entity/IoT/RepositoryIoT";
 import { Request, Response } from "express";
 
-export class ListIoT {
+export class IoTList {
   async execute(request: Request, response: Response): Promise<Response> {
     const userId = request.headers.userId;
 

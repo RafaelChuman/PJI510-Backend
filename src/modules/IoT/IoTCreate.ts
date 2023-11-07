@@ -3,7 +3,7 @@ import { RepositoryIoT } from "@src/entity/IoT/RepositoryIoT";
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 
-export class CreateIoT {
+export class IoTCreate {
   async execute(request: Request, response: Response): Promise<Response> {
     const ioTRep = new RepositoryIoT();
 

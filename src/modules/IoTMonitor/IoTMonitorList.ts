@@ -2,16 +2,22 @@ import { DTOListIoTMonitorByUser } from "@src/entity/IoTMonitor/InterfaceIoTMoni
 import { RepositoryIoTMonitor } from "@src/entity/IoTMonitor/RepositoryIoTMonitor";
 import { Request, Response } from "express";
 
-export class ListIoTMonitor {
+export class IoTMonitorList {
   async execute(request: Request, response: Response): Promise<Response> {
     const userId = request.headers.userId;
+    const dateBegin = request.query.dateBegin;
+    const dateEnd = request.query.dateEnd;
 
-    if (userId) {
-      if (typeof userId == "string") {
+    if (userId && dateBegin && dateEnd) {
+      if (
+        typeof userId == "string" &&
+        typeof dateBegin == "string" &&
+        typeof dateEnd == "string"
+      ) {
         const data: DTOListIoTMonitorByUser = {
           userId: userId,
-          dateBegin: request.body.dataBegin,
-          dateEnd: request.body.dataEnd,
+          dateBegin: new Date(dateBegin),
+          dateEnd: new Date(dateEnd),
         };
 
         const ioTMonitorRep = new RepositoryIoTMonitor();

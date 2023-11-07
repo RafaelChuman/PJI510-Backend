@@ -1,10 +1,13 @@
-import { CreateIoT } from "./createIoT";
-import { DeleteIoT } from "./deleteIoT";
-import { ListIoT } from "./listIoT";
+import { IoTCreate } from "./IoTCreate";
+import { IoTDelete } from "./IoTDelete";
+import { IoTList } from "./IoTList";
+import { IoTUpdate } from "./IoTUpdate";
 
 
-const createIoT = new CreateIoT();
-const listIoT = new ListIoT();
-const deleteIoT = new DeleteIoT();
 
-export { createIoT, listIoT, deleteIoT };
+const ioTCreate = new IoTCreate();
+const ioTList = new IoTList();
+const ioTDelete = new IoTDelete();
+const ioTUpdate = new IoTUpdate();
+
+export { ioTCreate, ioTDelete, ioTUpdate,  ioTList};
