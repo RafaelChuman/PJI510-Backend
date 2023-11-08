@@ -7,26 +7,24 @@ import { IoTMonitor } from "./entity/IoTMonitor/IoTMonitor";
 
 export const PostgresDS = new DataSource({
   type: "postgres",
-  host: "127.0.0.1",
-  port: 5432,
-  username: "chuman",
-  password: "pji510_univesp!",
-  database: "postgres",
+  // host: "127.0.0.1",
+   port: 5432,
+  // username: "chuman",
+  // password: "pji510_univesp!",
+  // database: "postgres",
+  //ssl: false,
   name: "default",
-  // type: "postgres",
-  // host: "ep-square-frog-051483.us-east-2.aws.neon.tech",
-  // port: 5432,
-  // username: "RafaelChuman",
-  // password: "e9YBvLoHjNx6",
-  // database: "neondb",
-  // name: "default",
-  //ssl: true,
-  // extra: {
-  //   ssl: {
-  //     rejectUnauthorized: false,
-  //   },
-  // },
-  ssl: false,
+  host:'ep-fragrant-hill-48885740.us-east-2.aws.neon.tech',
+  database:'pji510',
+  username:'rafael.chuman',
+  password:'rJH3kb4BsFzi',
+  //ENDPOINT_ID='ep-fragrant-hill-48885740'
+  ssl: true,
+   extra: {
+     ssl: {
+       rejectUnauthorized: false,
+     },
+   },  
   entities: [
     User,
     Group,
